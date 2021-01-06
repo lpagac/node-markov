@@ -1,5 +1,5 @@
+"use strict";
 /** Textual markov chain generator */
-
 
 class MarkovMachine {
 
@@ -19,6 +19,7 @@ class MarkovMachine {
   makeChains() {
     const words = this.words;
     let wordsChain = new Map();
+
     for (let i = 0;i < words.length;i++) {
       let nextWord = words[i + 1] || null;
       if (wordsChain.has(words[i])) {
@@ -27,6 +28,7 @@ class MarkovMachine {
         wordsChain.set(words[i], [nextWord]);
       }
     }
+
     return wordsChain;
   }
 
@@ -35,6 +37,7 @@ class MarkovMachine {
   getFirstWord() {
     let keys = Array.from(this.wordsChain.keys());
     let randomIndex = Math.floor(Math.random() * keys.length);
+
     return keys[randomIndex];
   }
 
@@ -43,6 +46,7 @@ class MarkovMachine {
   getRandomWord(word) {
     let wordOptions = this.wordsChain.get(word);
     let randomIndex = Math.floor(Math.random() * wordOptions.length);
+
     return wordOptions[randomIndex]
   }
 
@@ -52,11 +56,15 @@ class MarkovMachine {
     let story = [];
     story.push(this.getFirstWord());
     numWords--;
+
     let word;
     while(numWords) {
       word = story[story.length - 1];
       let nextWord = this.getRandomWord(word);
       if (nextWord) {
+        // TODO: what is the runtime for `concat`?
+        // change to push
+        
         story = story.concat(nextWord);
       } else {
         return story.join(' ');

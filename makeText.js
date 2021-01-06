@@ -7,8 +7,8 @@ const {MarkovMachine} = require('./markov.js');
 /* Read files from the inputted path and console log the content */
 async function getTextFromFile(path) {
   try {
-    // Code Review Note: Only have try do ONE THING
     var fileContent = await fsP.readFile(path, "utf8");
+
   } catch (err) {
     console.log(`No such file at ${path}`);
     process.exit(1);
@@ -22,6 +22,7 @@ async function getTextFromFile(path) {
 async function getTextFromURL(url) {
   try {
     var resp = await axios({url});
+
   } catch (err) {
     console.log(`Error fetching ${url}: ${err}`);
     process.exit(1);
