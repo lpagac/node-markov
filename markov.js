@@ -67,6 +67,10 @@ class MarkovMachine {
   }
 }
 
-let mm = new MarkovMachine("the cat in the hat");
-console.log(mm.wordsChain.get('the'));
-console.log(mm.getText());
+// let mm = new MarkovMachine("the cat in the hat");
+// console.log(mm.wordsChain.get('the'));
+// console.log(mm.getText());
+
+module.exports = {
+  MarkovMachine: MarkovMachine
+};
